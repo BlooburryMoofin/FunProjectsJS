@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Banking System - Gabeware V1</title>
+    <style>
+      .title,.first-boxes,.second-boxes {
+        text-align: center;
+      }
+
+      .title {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+
+      .deposit, .withdraw {
+        font-family: monospace;
+        font-style: italic;
+      }
+
+      .deposit-box, .withdraw-box, .deposit-buttons, .withdraw-buttons {
+        display: inline-block;
+      }
+
+      .withdraw-box {
+        margin-left: 350px;
+      }
+
+      .deposit-buttons {
+        margin-right: 40px;
+      }
+
+      .first-boxes, .second-boxes {
+        display: block;
+      }
+
+      .withdraw-buttons {
+        margin-left: 230px;
+      }
+
+      .button-with {
+        font-size: 15px;
+        margin-left: 5px;
+        background-color: rgb(52, 135, 229);
+        color: white;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 4px; 
+      }
+
+      .button-deposit {
+        font-size: 15px;
+        margin-left: 5px;
+        background-color: green;
+        color: white;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 4px;
+      }
+
+      .button-deposit:hover, .button-with:hover, .button-balance:hover {
+        opacity: 0.5;
+      }
+
+      .button-deposit:active, .button-with:active, .button-balance:active {
+        opacity: 0.3;
+      }
+
+      .button-balance {
+        font-size: 15px;
+        margin-left: 5px;
+        background-color: rgb(166, 14, 197);
+        color: white;
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 4px;
+      }
+
+      .balance-box {
+        text-align: center;
+        margin-top: 30px
+      }
+
+    </style>
+  </head>
+  <body>
+<h1 class="title"><u>Bank of Gabe - ATM Services</u></h1>
+
+<div class="first-boxes">
+<div class="deposit-box">
+<h2 class="deposit">Deposit $</h2>   
+</div>
+<div class="withdraw-box">
+<h2 class="withdraw">Withdraw $</h2>
+</div>
+</div>
+
+<div class="second-boxes">
+<div class="deposit-buttons">
+<button onclick="
+depositMoney (25)
+  " class="button-deposit"> $25 </button>
+<button onclick="
+depositMoney (50)
+" class="button-deposit"> $50</button>
+<button onclick="
+depositMoney (100)
+" class="button-deposit"> $100</button>
+<button onclick="
+depositMoney (250)
+" class="button-deposit">$250</button>
+</div>
+
+
+<div class="withdraw-buttons">
+  <button onclick="
+withdrawMoney (25) 
+" class="button-with"> $25 </button>
+  <button onclick="
+withdrawMoney (50) 
+" class="button-with"> $50</button>
+  <button onclick="
+withdrawMoney (100)
+" class="button-with"> $100</button>
+  <button onclick="
+withdrawMoney (250)  
+" class="button-with"> $250</button>
+</div>
+</div>
+
+<div class="balance-box">
+  <button onclick="
+    alert(`You currently have $${balanceAmount}`);
+    " class="button-balance">Check Current Balance</button>
+</div>
+
+
+
+  <script>
+    var balanceAmount = 0;
+
+    function depositMoney (depositAmount) {
+      
+      if (depositAmount === 25) {
+        balanceAmount += 25
+        alert(`You deposited $25, Thank you for using Bank of Gabe`)
+      } else if (depositAmount === 50) {
+        balanceAmount += 50
+        alert(`You deposited $50, Thank you for using Bank of Gabe`)
+      } else if (depositAmount === 100) {
+        balanceAmount += 100
+        alert(`You deposited $100, Thank you for using Bank of Gabe`)
+      } else if (depositAmount === 250) {
+        balanceAmount += 250
+        alert(`You deposited $250, Thank you for using Bank of Gabe`)
+      }
+    }
+
+    function withdrawMoney (withdrawAmount) {
+      let proceed = checkBalance ()
+ 
+      if (proceed === 'yes') {
+      if (withdrawAmount === 25 && balanceAmount >= withdrawAmount) {
+        balanceAmount -= 25
+        alert(`You withdrew $25, Thank you for using Bank of Gabe`)
+      } else if (withdrawAmount === 50 && balanceAmount >= withdrawAmount) {
+        balanceAmount -= 50
+        alert(`You withdrew $50, Thank you for using Bank of Gabe`)
+      } else if (withdrawAmount === 100 && balanceAmount >= withdrawAmount) {
+        balanceAmount -= 100
+        alert(`You withdrew $100, Thank you for using Bank of Gabe`)
+      } else if (withdrawAmount === 250 && balanceAmount >= withdrawAmount) {
+        balanceAmount -= 250
+        alert(`You withdrew $250, Thank you for using Bank of Gabe`)
+      } else if (withdrawAmount > balanceAmount) {
+        alert(`Insufficient Funds, you're broke lmao`)
+      }
+    } else if (proceed === 'no') {
+      alert(`Insufficient Funds, you're broke lmao`)
+    }
+
+
+    }
+
+    function checkBalance () {
+      var proceed ='';
+      if (balanceAmount > 0) {
+        proceed = 'yes'
+      } else if (balanceAmount <= 0) {
+        proceed = 'no'
+      } 
+      return proceed 
+    }
+
+    
+
+
+
+
+
+  </script>
+  </body>
+</html>
