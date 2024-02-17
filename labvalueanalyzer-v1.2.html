@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab Value Analyzer - Prototype - GabeWare V1.2 - I'm a registered nurse and coded this for fun</title>
+<style>
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  font-family: Tahoma;
+}
+
+.program-box {
+  background-color: none;
+  height: auto; 
+  width: 700px; 
+  margin: 0 auto;
+  display: flex; 
+  justify-content: start; 
+}
+
+.calculate-box {
+  background-color: none;
+  height: 150px;
+  width: 700px; 
+  margin: 0 auto;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+
+.value-box {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 50px;
+  width: 180px;
+  background-color: none;
+  margin: 0; 
+  padding: 0; 
+  font-size: 28px;
+  font-family: garamond;
+}
+
+
+.input-box-hemo {
+  height: 50px;
+  width: 220px;
+  background-color: none;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+}
+
+.units-box {
+  height: 50px;
+  width: 100px;
+  background-color: none;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  font-size: 23px;
+  font-family: garamond;
+}
+
+/* input boxes class */
+.js-hemo, .js-k, .js-na, .js-plt, .js-creat, .js-bicarb, .js-wbc, .js-pH, .js-CO2, .js-PTT, .js-crit {
+  font-size: 18px;
+  width:200px; 
+}
+
+.js-result {
+  height: 50px;
+  width: 200px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  font-size: 23px;
+  font-family: garamond; 
+}
+
+.calculate-button {
+  height: 50px;
+  width: 140px;
+  font-size: 20px;
+  font-family: helvetica;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  
+}
+
+.calculate-button:hover {
+  opacity: 0.6;
+}
+
+.calculate-button:active {
+  opacity: 0.3;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<h1 class=title><u>Medical Lab Value Analyzer</u></h1>
+
+
+<div class="program-box">
+      <div class="value-box">
+       <p class="hemoglobin-text">Hemoglobin:</p>
+      </div>
+      <div class="input-box-hemo">
+       <input placeholder="Type Value" class="js-hemo">
+      </div>
+      <div class="units-box">
+       <p>g/L</p>
+      </div>
+      <div class="js-result">
+       <p class="js-hemo-result"></p>
+
+</div>
+
+  </div>
+<div class="program-box">
+      <div class="value-box">
+        <p>Potassium:</p>
+      </div>
+      <div class="input-box-hemo">
+        <input placeholder="Type Value" class="js-k">
+      </div>
+      <div class="units-box">
+        <p>mmol/L</p>
+      </div>
+      <div class="js-result">
+        <p class="js-k-result"></p>
+
+</div>
+
+  </div>
+<div class="program-box">
+      <div class="value-box">
+        <p>Sodium:</p>
+      </div>
+      <div class="input-box-hemo">
+        <input placeholder="Type Value" class="js-na">
+      </div>
+      <div class="units-box">
+        <p>mmol/L</p>
+      </div>
+      <div class="js-result">
+        <p class="js-na-result"></p>
+      </div>
+  
+  </div>
+<div class="program-box">
+    <div class="value-box">
+      <p>Platelets:</p>
+    </div>
+    <div class="input-box-hemo">
+      <input placeholder="Type Value" class="js-plt">
+    </div>
+    <div class="units-box">
+     <p>k/μL</p>
+    </div>
+    <div class="js-result">
+    <p class="js-plt-result"></p>
+    
+    </div>
+    
+  </div>
+<div class="program-box">
+      <div class="value-box">
+        <p>Bicarbonate:</p>
+      </div>
+      <div class="input-box-hemo">
+        <input placeholder="Type Value" class="js-bicarb">
+      </div>
+      <div class="units-box">
+       <p>mmol/L</p>
+      </div>
+      <div class="js-result">
+      <p class="js-bicarb-result"></p>
+      
+      </div>
+      
+  </div>
+<div class="program-box">
+        <div class="value-box">
+          <p>Creatinine:</p>
+        </div>
+        <div class="input-box-hemo">
+          <input placeholder="Type Value" class="js-creat">
+        </div>
+        <div class="units-box">
+         <p>mg/dL</p>
+        </div>
+        <div class="js-result">
+        <p class="js-creat-result"></p>
+        
+        </div>
+        
+  </div>
+<div class="program-box">
+      <div class="value-box">
+          <p>WBC:</p>
+      </div>
+      <div class="input-box-hemo">
+          <input placeholder="Type Value" class="js-wbc">
+      </div>
+      <div class="units-box">
+          <p>Cells/μL</p>
+      </div>
+      <div class="js-result">
+        <p class="js-wbc-result"></p>  
+      </div>
+          
+  </div>
+<div class="program-box">
+      <div class="value-box">
+       <p>pH:</p>
+      </div>
+      <div class="input-box-hemo">
+        <input placeholder="Type Value" class="js-pH">
+      </div>
+      <div class="units-box">
+        <p1></p1>
+      </div>
+      <div class="js-result">
+        <p class="js-pH-result"></p>
+      </div>
+            
+  </div>
+<div class="program-box">
+      <div class="value-box">
+        <p>pCO2:</p>
+      </div>
+      <div class="input-box-hemo">
+        <input placeholder="Type Value" class="js-CO2">
+      </div>
+      <div class="units-box">
+        <p>mmHg</p>
+      </div>
+        <div class="js-result">
+        <p class="js-CO2-result"></p>
+      </div>
+              
+  </div>
+<div class="program-box">
+      <div class="value-box">
+        <p>PTT (Heparin):</p>
+      </div>
+      <div class="input-box-hemo">
+      <input placeholder="Type Value" class="js-PTT">
+      </div>
+      <div class="units-box">
+      <p>seconds</p>
+      </div>
+      <div class="js-result">
+      <p class="js-PTT-result"></p>
+      </div>
+                
+</div>
+<div class="program-box">
+      <div class="value-box">
+        <p>Hematocrit:</p>
+      </div>
+      <div class="input-box-hemo">
+          <input placeholder="Type Value" class="js-crit">
+      </div>
+      <div class="units-box">
+          <p>%</p>
+      </div>
+      <div class="js-result">
+          <p class="js-crit-result"></p>
+      </div>
+</div>
+<div class="calculate-box">
+ <button class="calculate-button" onclick="
+ calculateResult();
+ ">Calculate</button>
+</div>
+
+<script>
+ function calculateResult() {
+  
+  let hemoElement = document.querySelector('.js-hemo');
+  let kElement = document.querySelector('.js-k');
+  let naElement = document.querySelector('.js-na');
+  let pltElement = document.querySelector('.js-plt');
+  let bicarbElement = document.querySelector('.js-bicarb');
+  let wbcElement = document.querySelector('.js-wbc');
+  let creatElement = document.querySelector('.js-creat');
+  let pHElement = document.querySelector('.js-pH');
+  let CO2Element = document.querySelector('.js-CO2');
+  let PTTElement = document.querySelector('.js-PTT');
+  let CritElement = document.querySelector('.js-crit');
+
+
+  let hemoResult = Number(hemoElement.value);
+  let kResult = Number(kElement.value);
+  let naResult = Number(naElement.value);
+  let pltResult = Number(pltElement.value);
+  let bicarbResult = Number(bicarbElement.value);
+  let wbcResult = Number(wbcElement.value);
+  let creatResult = Number(creatElement.value);
+  let pHResult = Number(pHElement.value);
+  let CO2Result = Number(CO2Element.value);
+  let PTTResult = Number(PTTElement.value);
+  let CritResult = Number(CritElement.value); 
+
+   
+if (hemoElement.value.trim() === '') {
+  document.querySelector('.js-hemo-result').innerHTML = 'NO INPUT';
+  } else if (hemoResult >= 120 && hemoResult <= 180) {
+  document.querySelector('.js-hemo-result').innerHTML = 'NORMAL';
+  } else if (hemoResult < 120) {
+  document.querySelector('.js-hemo-result').innerHTML = 'LOW!';
+  } else if (hemoResult > 180) {
+  document.querySelector('.js-hemo-result').innerHTML = 'HIGH!';
+  } else if (isNaN(hemoResult)) {
+    document.querySelector('.js-hemo-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (kElement.value.trim() === '') {
+  document.querySelector('.js-k-result').innerHTML = 'NO INPUT';
+  } else if (kResult >= 3.5 && kResult <= 5) {
+    document.querySelector('.js-k-result').innerHTML = 'NORMAL';
+  } else if (kResult < 3.5) {
+    document.querySelector('.js-k-result').innerHTML = 
+    'LOW!';
+  } else if (kResult > 5 && kResult < 5.5) {
+    document.querySelector('.js-k-result').innerHTML =
+    'HIGH!';
+  } else if (kResult > 5.5 ) {
+    document.querySelector('.js-k-result').innerHTML =
+    'CRITICAL HIGH!';
+  } else if (isNaN(kResult)) {
+    document.querySelector('.js-k-result').innerHTML = 'INVALID INPUT';
+  }
+  
+
+  if (naElement.value.trim() === '') {
+  document.querySelector('.js-na-result').innerHTML = 'NO INPUT';
+  } else if (naResult >= 135 && naResult <= 145) {
+    document.querySelector('.js-na-result').innerHTML = 'NORMAL';
+  } else if (naResult < 135) {
+    document.querySelector('.js-na-result').innerHTML = 
+    'LOW!';
+  } else if (naResult > 145) {
+    document.querySelector('.js-na-result').innerHTML =
+    'HIGH!';
+  } else if (isNaN(naResult)) {
+    document.querySelector('.js-na-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (pltElement.value.trim() === '') {
+  document.querySelector('.js-plt-result').innerHTML = 'NO INPUT';
+  } else if (pltResult >= 150000 && pltResult <= 450000) {
+    document.querySelector('.js-plt-result').innerHTML = 'NORMAL';
+  } else if (pltResult < 150000) {
+    document.querySelector('.js-plt-result').innerHTML = 
+    'LOW!';
+  } else if (pltResult > 450000) {
+    document.querySelector('.js-plt-result').innerHTML =
+    'HIGH!';
+  } else if (isNaN(pltResult)) {
+    document.querySelector('.js-plt-result').innerHTML = 'INVALID INPUT';
+    
+  }
+
+  if (bicarbElement.value.trim() === '') {
+  document.querySelector('.js-bicarb-result').innerHTML = 'NO INPUT';
+  } else if (bicarbResult >= 22 && bicarbResult <= 26) {
+    document.querySelector('.js-bicarb-result').innerHTML = 'NORMAL';
+  } else if (bicarbResult < 22) {
+    document.querySelector('.js-bicarb-result').innerHTML = 
+    'LOW!';
+  } else if (bicarbResult > 26) {
+    document.querySelector('.js-bicarb-result').innerHTML =
+    'HIGH!';
+  } else if (isNaN(bicarbResult)) {
+    document.querySelector('.js-bicarb-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (wbcElement.value.trim() === '') {
+  document.querySelector('.js-wbc-result').innerHTML = 
+    'NO INPUT';
+  } else if (wbcResult >= 5000 && wbcResult <= 11000) { document.querySelector('.js-wbc-result').innerHTML = 
+    'NORMAL';
+  } else if (wbcResult < 5000) {
+    document.querySelector('.js-wbc-result').innerHTML = 
+    'LOW!';
+  } else if (wbcResult > 11000) {
+    document.querySelector('.js-wbc-result').innerHTML =
+    'HIGH!';
+}   else if (isNaN(wbcResult)) {
+    document.querySelector('.js-wbc-result').innerHTML = 'INVALID INPUT';
+  }
+
+    if (creatElement.value.trim() === '') {
+  document.querySelector('.js-creat-result').innerHTML = 
+    'NO INPUT';
+  } else if (creatResult >= 0.6 && creatResult <= 1.2) {
+    document.querySelector('.js-creat-result').innerHTML = 
+    'NORMAL';
+  } else if (creatResult < 0.6) {
+    document.querySelector('.js-creat-result').innerHTML = 
+    'LOW!';
+  } else if (creatResult > 1.2) {
+    document.querySelector('.js-creat-result').innerHTML =
+    'HIGH!';
+}   else if (isNaN(creatResult)) {
+    document.querySelector('.js-creat-result').innerHTML = 'INVALID INPUT';
+  }
+
+    if (pHElement.value.trim() === '') {
+  document.querySelector('.js-pH-result').innerHTML = 'NO INPUT';
+  } else if (pHResult >= 7.35 && pHResult <= 7.45) {
+    document.querySelector('.js-pH-result').innerHTML = 'NORMAL';
+  } else if (pHResult < 7.35) {
+    document.querySelector('.js-pH-result').innerHTML = 
+    'LOW!';
+  } else if (pHResult > 7.45) {
+    document.querySelector('.js-pH-result').innerHTML =
+    'HIGH!';    
+  } else if (isNaN(pHResult)) {
+    document.querySelector('.js-pH-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (CO2Element.value.trim() === '') {
+  document.querySelector('.js-CO2-result').innerHTML = 'NO INPUT';
+  } else if (CO2Result >= 35 && CO2Result <= 45) {
+  document.querySelector('.js-CO2-result').innerHTML = 'NORMAL';
+  } else if (CO2Result < 35) {
+  document.querySelector('.js-CO2-result').innerHTML = 'LOW!';
+  } else if (CO2Result > 45) {
+  document.querySelector('.js-CO2-result').innerHTML = 'HIGH!';
+  } else if (isNaN(CO2Result)) {
+    document.querySelector('.js-CO2-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (PTTElement.value.trim() === '') {
+  document.querySelector('.js-PTT-result').innerHTML = 'NO INPUT';
+  } else if (PTTResult >= 25 && PTTResult <= 35) {
+  document.querySelector('.js-PTT-result').innerHTML = 'NORMAL';
+  } else if (PTTResult < 25) {
+  document.querySelector('.js-PTT-result').innerHTML = 'LOW!';
+  } else if (PTTResult > 35) {
+  document.querySelector('.js-PTT-result').innerHTML = 'HIGH!';
+  } else if (isNaN(PTTResult)) {
+    document.querySelector('.js-PTT-result').innerHTML = 'INVALID INPUT';
+  }
+
+  if (CritElement.value.trim() === '') {
+  document.querySelector('.js-crit-result').innerHTML = 'NO INPUT';
+  } else if (CritResult >= 36 && CritResult <= 54) {
+  document.querySelector('.js-crit-result').innerHTML = 'NORMAL';
+  } else if (CritResult < 36) {
+  document.querySelector('.js-crit-result').innerHTML = 'LOW!';
+  } else if (CritResult > 54) {
+  document.querySelector('.js-crit-result').innerHTML = 'HIGH!';
+  } else if (isNaN(CritResult)) {
+    document.querySelector('.js-crit-result').innerHTML = 'INVALID INPUT';
+  }
+
+}
+
+
+</script>
+
+</body>
+</html>
