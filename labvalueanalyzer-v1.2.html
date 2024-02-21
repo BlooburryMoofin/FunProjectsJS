@@ -333,12 +333,9 @@ if (hemoElement.value.trim() === '') {
   } else if (kResult < 3.5) {
     document.querySelector('.js-k-result').innerHTML = 
     'LOW!';
-  } else if (kResult > 5 && kResult < 5.5) {
+  } else if (kResult > 5) {
     document.querySelector('.js-k-result').innerHTML =
     'HIGH!';
-  } else if (kResult > 5.5 ) {
-    document.querySelector('.js-k-result').innerHTML =
-    'CRITICAL HIGH!';
   } else if (isNaN(kResult)) {
     document.querySelector('.js-k-result').innerHTML = 'INVALID INPUT';
   }
