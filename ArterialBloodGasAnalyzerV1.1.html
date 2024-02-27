@@ -293,7 +293,7 @@
                   pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue < 22 || // normal CO2, Low bicarb
                   pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue > 26 || // normal CO2, high bicarb
                   bicarbValue >= 22 && bicarbValue <= 26 && pCO2Value < 35 || // normal bicarb, low CO2
-                  bicarbValue >= 22 && bicarbValue <= 26 && pCO2 > 45) {
+                  bicarbValue >= 22 && bicarbValue <= 26 && pCO2Value > 45) {
 
         document.querySelector('.js-result').innerHTML = 'Invalid Input';
       }
