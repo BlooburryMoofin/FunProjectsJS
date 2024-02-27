@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ABG analyzer prototype v1 - BlueberryCare - Made by Gabriel Joaquino </title>
+    <style>
+      .titleHead {
+        text-align: center;
+        background-color: none;
+        font-size: 30px;
+        font-family: helvetica;
+      }
+
+
+      .valuesBox {
+        max-width: 1200px; 
+        height: 100px;
+        background-color: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto; 
+        margin-top: 300px;
+      }
+
+      .phBOX {
+        width: 400px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto; 
+        background-color: none;
+      }
+
+      .bicarbBox {
+        width: 600px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto; 
+        background-color: none;
+      }
+
+      .pco2Box {
+        width: 400px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto; 
+        background-color: none;
+      }
+
+      /* div for the analyze button */
+      .analyzeBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 400px;
+        height: 300px; 
+        background-color: none;
+      }
+      /* div for the result */
+      .resultBox {
+        width: 1000px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto; 
+        background-color: none;
+        font-size: 20px;
+        font-family: helvetica;
+      }
+
+      .phname, .pco2name, .bicarbname {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: none;
+        font-family: helvetica;
+      }
+
+      .phvalue, .pco2value, .bicarbvalue {
+        width: 300px;
+        height: 100px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        background-color: none;
+      }
+
+      .js-input-pH, .js-input-bicarb, .js-input-pco2 {
+        font-size: 30px;
+        width:250px;
+      }
+
+      .js-input-pH {
+        margin-left: -18px;
+      }
+
+
+      .js-input-bicarb {
+        margin-left: 6px;
+      }
+
+      .analyzeButton {
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 30px;
+        font-family: helvetica;
+        background-color: rgb(68, 68, 68);
+        color: white;
+        border-radius: 5px;
+        border: none;
+    }
+
+      .analyzeButton:hover {
+        opacity: 0.7;
+      }
+
+      .analyzeButton:active {
+        opacity: 0.3;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="titleHead">
+      <h1>Arterial Blood Gas Value Analyzer</h1>
+    </div>
+
+    <div class="valuesBox">
+    
+        <div class="phBOX">
+          <div class="phname">
+          <h1>pH:</h1>
+          </div>
+          <div class="phvalue">
+          <input class="js-input-pH" placeholder="Enter Value">
+          </div>
+        </div>
+
+
+        <div class="bicarbBox">
+          <div class="bicarbname">
+          <h1>Bicarb:</h1>
+        </div>
+          <div class="bicarbvalue">
+          <input class="js-input-bicarb" placeholder="Enter Value">
+        </div>
+        </div>
+
+
+        <div class="pco2Box">
+          <div class="pco2name">
+            <h1>pCO2:</h1>
+          </div>
+            <div class="pco2value">
+            <input class="js-input-pco2" placeholder="Enter Value">
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="analyzeBox">
+      <button class="analyzeButton" onclick="
+      analyzeValue();
+      ">Analyze</button>
+    </div>
+
+    <div class="resultBox">
+      <h1 class="js-result"></h1>
+
+
+    </div>
+
+    <script>
+      var pHElement = '';
+      var pCO2Element = '';
+      var bicarbElement = '';
+      var pHValue = '';
+      var normalRange = '';
+
+    function analyzeValue() {
+      
+      pHElement = document.querySelector('.js-input-pH'); 
+
+      pHValue = Number(pHElement.value);
+      
+
+      if (pHElement.value.trim() === '') {
+      document.querySelector('.js-result').innerHTML = 'Invalid Input';}
+      else if (pHValue >= 7.35 && pHValue <= 7.45) {
+        compensatedAnalysis(); 
+      } else if (pHValue > 7.45 && pHValue <= 14) {
+        alkalosisAnalysis(); 
+      } else if (pHValue < 7.35 && pHValue >= 0) {
+        acidosisAnalysis(); 
+      } else if (pHValue < 0 || pHValue > 14 || isNaN(pHElement.value)) {
+      document.querySelector('.js-result').innerHTML = 'Invalid Input';
+      }
+    }
+ 
+    function acidosisAnalysis () {
+      pCO2Element = document.querySelector('.js-input-pco2')
+      bicarbElement = document.querySelector('.js-input-bicarb')
+      let pCO2Value = Number(pCO2Element.value);
+      let bicarbValue = Number(bicarbElement.value);
+
+      if (pCO2Element.value.trim() === '' || bicarbElement.value.trim() === '') {
+        document.querySelector('.js-result').innerHTML = 'Invalid Input';}
+      else if (pCO2Value > 45 && bicarbValue >= 22 && bicarbValue <= 26) {
+        document.querySelector('.js-result').innerHTML = 'Uncompensated Respiratory Acidosis'}
+      else if (pCO2Value > 45 && bicarbValue > 26) {
+        document.querySelector('.js-result').innerHTML = 'Partially Compensated Respiratory Acidosis'
+      } else if (pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue < 22) {
+        document.querySelector('.js-result').innerHTML = 'Uncompensated Metabolic Acidosis'
+      } else if (pCO2Value < 35 && bicarbValue < 22) {
+        document.querySelector('.js-result').innerHTML = 'Partially Compensated Metabolic Acidosis'
+      } else if (pCO2Value > 45 && bicarbValue < 22 || pCO2Value < 35 && bicarbValue > 26 || isNaN(pCO2Element.value) || isNaN(bicarbElement.value)) {
+        document.querySelector('.js-result').innerHTML = 'Invalid Input'
+      }
+    }
+
+    function alkalosisAnalysis () {
+      pCO2Element = document.querySelector('.js-input-pco2')
+      bicarbElement = document.querySelector('.js-input-bicarb')
+      let pCO2Value = Number(pCO2Element.value); 
+      let bicarbValue = Number(bicarbElement.value);
+
+        
+      if (pCO2Element.value.trim() === '' || bicarbElement.value.trim() === '') {
+        document.querySelector('.js-result').innerHTML = 'Invalid Input';}
+      else if (pCO2Value < 35 && bicarbValue >= 22 && bicarbValue <= 26) {
+        document.querySelector('.js-result').innerHTML = 'Uncompensated Respiratory Alkalosis'
+      } else if (pCO2Value < 35 && bicarbValue < 22) {
+        document.querySelector('.js-result').innerHTML = 'Partially Compensated Respiratory Alkalosis'
+      } else if (pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue > 26) {
+        document.querySelector('.js-result').innerHTML = 'Uncompensated Metabolic Alkalosis'
+      } else if (pCO2Value > 45 && bicarbValue > 26) {
+        document.querySelector('.js-result').innerHTML = 'Partially Compensated Metabolic Alkalosis'
+      } else if (pCO2Value > 45 && bicarbValue < 22 || pCO2Value < 35 && bicarbValue > 26 || isNaN(pCO2Element.value) || isNaN(bicarbElement.value)) {
+        document.querySelector('.js-result').innerHTML = 'Invalid Input'
+      }
+    }
+
+    
+    function compensatedAnalysis () {
+      let pCO2Value = Number(pCO2Element.value);
+      let bicarbValue = Number(bicarbElement.value);
+      let normalRange = normalCheck();
+
+      if (normalRange === 'no') {
+        if (pHValue >= 7.35 && pHValue <= 7.4 && pCO2Value > 45 && bicarbValue > 26) {
+          document.querySelector('.js-result').innerHTML = 'Fully Compensated Respiratory Acidosis';
+          } 
+        else if (pHValue >= 7.35 && pHValue <= 7.4 && pCO2Value < 35 && bicarbValue < 22) {
+          document.querySelector('.js-result').innerHTML = 'Fully Compensated Metabolic Acidosis';
+          }
+        else if (pHValue >= 7.41 && pHValue <= 7.45 && pCO2Value > 45 && bicarbValue > 26) {
+          document.querySelector('.js-result').innerHTML = 'Fully Compensated Metabolic Alkalosis';
+          }
+        else if (pHValue >= 7.41 && pHValue <= 7.45 && pCO2Value < 35 && bicarbValue < 22) {
+          document.querySelector('.js-result').innerHTML = 'Fully Compensated Respiratory Alkalosis';
+          }
+        }
+      
+      }
+
+    function normalCheck () {
+      pCO2Element = document.querySelector('.js-input-pco2')
+      bicarbElement = document.querySelector('.js-input-bicarb')
+      let pCO2Value = Number(pCO2Element.value);
+      let bicarbValue = Number(bicarbElement.value);
+
+      if (pCO2Element.value.trim() === '' || bicarbElement.value.trim() === '') {
+        document.querySelector('.js-result').innerHTML = 'Invalid Input';
+        normalRange = '';} 
+      else if (pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue >= 22 && bicarbValue <= 26)
+              {
+        document.querySelector('.js-result').innerHTML = 'Normal Values';
+        normalRange = 'yes';}
+      
+        else if ( pCO2Value > 45 && bicarbValue < 22 || // High CO2, Low Bicarb
+                  pCO2Value < 35 && bicarbValue > 26  || // Low CO2, High Bicarb
+                  pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue < 22 || // normal CO2, Low bicarb
+                  pCO2Value >= 35 && pCO2Value <= 45 && bicarbValue > 26 || // normal CO2, high bicarb
+                  bicarbValue >= 22 && bicarbValue <= 26 && pCO2Value < 35 || // normal bicarb, low CO2
+                  bicarbValue >= 22 && bicarbValue <= 26 && pCO2 > 45) {
+
+        document.querySelector('.js-result').innerHTML = 'Invalid Input';
+      }
+      else {
+        normalRange = 'no';
+      }
+
+      return normalRange
+
+    }
+
+
+
+
+    </script>
+
+  </body>
+</html>
